@@ -48,8 +48,8 @@
     },
     {
       "file": "figure-10.svg",
-      "source": "/word/media/image10.png",
-      "meta": "1180x885, q70"
+      "source": "/word/media/image10.jpeg",
+      "meta": "1180x786, q70"
     },
     {
       "file": "figure-11.svg",
@@ -69,6 +69,11 @@
     {
       "file": "figure-14.svg",
       "source": "/word/media/image14.png",
+      "meta": "1180x885, q70"
+    },
+    {
+      "file": "figure-15.svg",
+      "source": "/word/media/image15.png",
       "meta": "1180x885, q70"
     }
   ],
