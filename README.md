@@ -2,9 +2,9 @@
 
 這個 repo 將《逆思維 Think Again》第 1～7 章重點整理轉成可用 GitHub Pages 閱讀的靜態網站。
 
-預期網址：
+公開網址：
 
-https://torlsie.github.io/ThinkAgain/
+https://torlise.github.io/ThinkAgain/
 
 ## 檔案
 
@@ -14,6 +14,7 @@ https://torlsie.github.io/ThinkAgain/
 - `assets/`：從 Word 轉出的圖片資產與 manifest
 - `tools/build_site.py`：從 Word 重新產生網站內容的轉換器
 - `tools/validate_site.py`：檢查 HTML、圖片引用與基本結構
+- `tools/publish_github.py`：使用 GitHub Contents API 發佈網站檔案
 
 ## 來源
 
