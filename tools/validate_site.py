@@ -58,7 +58,11 @@ def main() -> None:
     failures = []
     if missing:
         failures.append("missing_refs")
-    if result["figures"] != 14 or result["asset_figures"] != 14:
+    if (
+        result["figures"] != result["manifest_figures"]
+        or result["asset_figures"] != result["manifest_figures"]
+        or result["manifest_figures"] == 0
+    ):
         failures.append("figure_count")
     if result["sections"] != 9:
         failures.append("section_count")
