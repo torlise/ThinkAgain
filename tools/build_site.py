@@ -203,6 +203,12 @@ def render_table(table: Table, figures: dict[str, Figure]) -> str:
 
 def build_site() -> None:
     ASSET_DIR.mkdir(parents=True, exist_ok=True)
+    for stale_asset in ASSET_DIR.glob("figure-*.svg"):
+        stale_asset.unlink()
+    manifest_path = ASSET_DIR / "manifest.json"
+    if manifest_path.exists():
+        manifest_path.unlink()
+
     doc = Document(DOCX_PATH)
 
     ordered_image_ids: list[str] = []
