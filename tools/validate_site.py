@@ -54,6 +54,8 @@ def main() -> None:
         "table_cells": html.count("<td "),
         "table_cells_with_labels": html.count("data-label="),
         "mobile_table_min_width": "min-width: 560px" in css,
+        "has_chapter_select": "class=\"chapter-select\"" in html,
+        "has_skip_link": "class=\"skip-link\"" in html,
         "svg_bad": svg_bad,
     }
 
@@ -75,6 +77,10 @@ def main() -> None:
         failures.append("table_cell_labels")
     if result["mobile_table_min_width"]:
         failures.append("mobile_table_min_width")
+    if not result["has_chapter_select"]:
+        failures.append("missing_chapter_select")
+    if result["has_skip_link"]:
+        failures.append("skip_link_present")
     if svg_bad:
         failures.append("svg_bad")
 
