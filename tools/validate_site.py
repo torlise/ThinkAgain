@@ -51,6 +51,9 @@ def main() -> None:
         "manifest_figures": len(manifest["figures"]),
         "has_mobile_media": "@media (max-width: 860px)" in css,
         "negative_letter_spacing": "letter-spacing: -" in css,
+        "table_cells": html.count("<td "),
+        "table_cells_with_labels": html.count("data-label="),
+        "mobile_table_min_width": "min-width: 560px" in css,
         "svg_bad": svg_bad,
     }
 
@@ -68,6 +71,10 @@ def main() -> None:
         failures.append("section_count")
     if result["negative_letter_spacing"]:
         failures.append("negative_letter_spacing")
+    if result["table_cells"] != result["table_cells_with_labels"]:
+        failures.append("table_cell_labels")
+    if result["mobile_table_min_width"]:
+        failures.append("mobile_table_min_width")
     if svg_bad:
         failures.append("svg_bad")
 
