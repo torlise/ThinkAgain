@@ -19,6 +19,8 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -28,6 +30,8 @@ body {
     linear-gradient(180deg, #ffffff 0, var(--bg) 360px);
   color: var(--ink);
   line-height: 1.82;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 a {
@@ -186,6 +190,16 @@ h1 {
 
 .chapter-section p {
   margin: 0 0 15px;
+}
+
+.chapter-section,
+.chapter-section p,
+.point-list li,
+.callout,
+td,
+th,
+.doc-figure figcaption {
+  overflow-wrap: anywhere;
 }
 
 .point-list {
@@ -380,10 +394,11 @@ tr:last-child td {
     top: 4px;
     z-index: 10;
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     max-height: none;
     padding: 10px;
-    overflow-x: auto;
+    overflow-x: visible;
   }
 
   .chapter-nav .nav-title {
@@ -391,8 +406,9 @@ tr:last-child td {
   }
 
   .chapter-nav a {
-    flex: 0 0 auto;
-    white-space: nowrap;
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;
+    white-space: normal;
   }
 
   .chapter-section {
@@ -403,7 +419,96 @@ tr:last-child td {
     grid-template-columns: 1fr;
   }
 
+  .table-wrap {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
   table {
-    min-width: 560px;
+    background: transparent;
+    border-collapse: separate;
+  }
+
+  thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  tr {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  td {
+    display: grid;
+    grid-template-columns: minmax(88px, 0.36fr) minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  td::before {
+    content: attr(data-label);
+    color: var(--teal);
+    font-weight: 800;
+  }
+
+  td:empty {
+    display: none;
+  }
+
+  td:last-child {
+    border-bottom: 0;
+  }
+
+  .summary-table td:first-child {
+    width: auto;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    padding-inline: 14px;
+  }
+
+  .reader-shell {
+    padding-inline: 14px;
+  }
+
+  .chapter-section {
+    padding: 22px 14px;
+  }
+
+  .chapter-nav a {
+    flex-basis: 100%;
+  }
+
+  td {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }
