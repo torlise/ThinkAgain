@@ -111,15 +111,17 @@ def html_table(rows: list[list[str]], class_name: str = "data-table") -> str:
         return ""
     head, body = rows[0], rows[1:]
     col_count = max(len(r) for r in rows)
+    headers = head + [""] * (col_count - len(head))
     out = [f'<div class="table-wrap"><table class="{class_name}">']
     out.append("<thead><tr>")
-    for cell in head:
-        out.append(f"<th>{html.escape(cell)}</th>")
+    for cell in headers:
+        out.append(f'<th scope="col">{html.escape(cell)}</th>')
     out.append("</tr></thead><tbody>")
     for row in body:
         out.append("<tr>")
-        for cell in row + [""] * (col_count - len(row)):
-            out.append(f"<td>{html.escape(cell)}</td>")
+        for index, cell in enumerate(row + [""] * (col_count - len(row))):
+            label = headers[index] if index < len(headers) else ""
+            out.append(f'<td data-label="{html.escape(label)}">{html.escape(cell)}</td>')
         out.append("</tr>")
     out.append("</tbody></table></div>")
     return "".join(out)
