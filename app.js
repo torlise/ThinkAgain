@@ -1,5 +1,6 @@
 const progressBar = document.querySelector(".progress span");
 const navLinks = Array.from(document.querySelectorAll(".chapter-nav a"));
+const chapterSelect = document.querySelector(".chapter-select");
 const sections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
@@ -24,6 +25,9 @@ const observer = new IntersectionObserver(
     navLinks.forEach((link) => {
       link.classList.toggle("active", link.getAttribute("href") === `#${visible.target.id}`);
     });
+    if (chapterSelect && chapterSelect.value !== `#${visible.target.id}`) {
+      chapterSelect.value = `#${visible.target.id}`;
+    }
   },
   {
     rootMargin: "-18% 0px -62% 0px",
@@ -38,6 +42,11 @@ navLinks.forEach((link) => {
     navLinks.forEach((item) => item.classList.remove("active"));
     link.classList.add("active");
   });
+});
+
+chapterSelect?.addEventListener("change", () => {
+  const target = document.querySelector(chapterSelect.value);
+  target?.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 topButton.addEventListener("click", () => {
