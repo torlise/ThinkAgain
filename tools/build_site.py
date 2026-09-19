@@ -300,6 +300,9 @@ def build_site() -> None:
     nav_html = "\n".join(
         f'<a href="#{html.escape(section_id)}">{html.escape(title)}</a>' for section_id, title in nav
     )
+    nav_options = "\n".join(
+        f'<option value="#{html.escape(section_id)}">{html.escape(title)}</option>' for section_id, title in nav
+    )
     generated_content = "\n".join(parts)
 
     index = f"""<!doctype html>
@@ -319,10 +322,15 @@ def build_site() -> None:
       <h1>《逆思維 Think Again》</h1>
       <p class="subtitle">第 1～7 章重點整理，為讀書會重新排成可瀏覽、可討論、可複習的網頁閱讀方式。</p>
     </div>
-    <a class="skip-link" href="#overview">開始閱讀</a>
   </header>
 
   <div class="reader-shell">
+    <div class="chapter-select-wrap">
+      <label for="chapter-select">選擇章節</label>
+      <select id="chapter-select" class="chapter-select">
+        {nav_options}
+      </select>
+    </div>
     <nav class="chapter-nav" aria-label="章節導覽">
       <div class="nav-title">章節</div>
       {nav_html}
