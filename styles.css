@@ -55,7 +55,7 @@ a {
 
 .site-header {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   align-items: end;
   max-width: 1180px;
@@ -149,6 +149,10 @@ h1 {
 
 .reader-content {
   min-width: 0;
+}
+
+.chapter-select-wrap {
+  display: none;
 }
 
 .chapter-section {
@@ -389,26 +393,39 @@ tr:last-child td {
     padding: 0 18px 42px;
   }
 
-  .chapter-nav {
+  .chapter-select-wrap {
     position: sticky;
     top: 4px;
     z-index: 10;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    max-height: none;
+    display: grid;
+    gap: 6px;
     padding: 10px;
-    overflow-x: visible;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 8px 24px rgba(36, 48, 46, 0.08);
+    backdrop-filter: blur(12px);
   }
 
-  .chapter-nav .nav-title {
+  .chapter-select-wrap label {
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .chapter-select {
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 36px 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+  }
+
+  .chapter-nav {
     display: none;
-  }
-
-  .chapter-nav a {
-    flex: 1 1 calc(50% - 8px);
-    min-width: 0;
-    white-space: normal;
   }
 
   .chapter-section {
@@ -501,10 +518,6 @@ tr:last-child td {
 
   .chapter-section {
     padding: 22px 14px;
-  }
-
-  .chapter-nav a {
-    flex-basis: 100%;
   }
 
   td {
